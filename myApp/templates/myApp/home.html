@@ -9,7 +9,7 @@
         <div class="alert alert-light">
             <h3>{{ post.title }}</h3>
             <p>{{ post.text }}</p>
-            <span class="text-muted">Published: {{ post.date }}</span>
+            <span class="text-muted">Published: {{ post.date|date:"j.m.Y, H:i" }}</span>
             {% if post.author %}
                 <p><b>Author:</b> {{ post.author }}</p>
             {% else %}
