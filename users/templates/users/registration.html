@@ -1,0 +1,33 @@
+{% extends 'myApp/base.html' %}
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+    <form method="post" class="form-register">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-outline-warning" type="submit">Registrate</button>
+    </form>
+{% endblock %}
+
+{% block aside_block %}
+     <img src="https://habrastorage.org/r/w780/getpro/habr/upload_files/1d3/c2e/6f1/1d3c2e6f197e8d997c2dae7d6988d870.jpg"
+         class="img-thumbnail">
+    <p>Вероятнее всего вы видели этот или похожий мемы. Когда я их видел, у меня возникал только один вопрос "А почему?".
+        И я решил разобраться в истории сосуществования этих языков и их заимствований друг у друга</p>
+    <a href="https://habr.com/ru/articles/816907/" target="_blank">
+        <button class="btn btn-warning">Read</button>
+    </a>
+
+    <img src="https://habrastorage.org/r/w1560/getpro/habr/upload_files/c39/b50/024/c39b50024880af56936784cac1cbaabb.png"
+         class="img-thumbnail mt-4">
+    <p>Вы когда-нибудь задумывались, сколько планет во Вселенной? В Солнечной системе вокруг Солнца вращаются
+        планеты земной группы, газовые и ледяные гиганты. Однако «поведение» планет противоречиво и не
+        укладывается ни в одну из существующих теорий. Возникает вопрос: смогут ли учёные объяснить эти
+        противоречия?</p>
+    <a href="https://habr.com/ru/companies/montirey/articles/820723/" target="_blank">
+        <button class="btn btn-warning">Read</button>
+    </a>
+{% endblock %}

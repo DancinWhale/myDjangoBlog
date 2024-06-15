@@ -27,6 +27,9 @@
             </li>
           </ul>
 
+            <a href="{% url 'registration' %}">
+                <button class="btn btn-outline-warning">Registration</button>
+            </a>
         </div>
       </div>
     </nav>
@@ -34,6 +37,11 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
+                {% if messages %}
+                    {% for mess in messages%}
+                        <div class="alert alert-success">{{ mess }}</div>
+                    {% endfor %}
+                {% endif %}
                 {% block content %}
                 {% endblock %}
             </div>
