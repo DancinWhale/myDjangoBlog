@@ -1,17 +1,12 @@
 {% extends 'myApp/base.html' %}
 {% block title %}
-    {{ title }}
+    User account
 {% endblock %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    <form method="post" class="form-register">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button class="btn btn-outline-warning" type="submit">Registrate</button>
-        <hr>
-        <p>Already registered? <a href="{% url 'user' %}">Login to your personal account</a></p>
-    </form>
+    <h1>Your account</h1>
+    <p>Login: {{ user.username }}</p>
+    <p>Email: {{ user.email }}</p>
 {% endblock %}
 
 {% block aside_block %}
