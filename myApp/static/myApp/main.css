@@ -6,6 +6,13 @@ body {
     border-color: #bfbfbf;
 }
 
+.user_images {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
 
 .form-register {
     padding: 20px;
