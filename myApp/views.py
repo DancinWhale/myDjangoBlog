@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import News
 from django.views.generic import (
@@ -17,11 +18,30 @@ class ShowNewsView(ListView):
     template_name = 'myApp/home.html'
     context_object_name = 'news'
     ordering = ['-date']
+    paginate_by = 3
 
     def get_context_data(self, **kwards):
         ctx = super(ShowNewsView, self).get_context_data(**kwards)
 
         ctx['title'] = 'Main page'
+        return ctx
+
+
+class UserAllNewsView(ListView):
+    model = News
+    template_name = 'myApp/user_news.html'
+    context_object_name = 'news'
+    ordering = ['-date']
+    paginate_by = 3
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return News.objects.filter(author=user).order_by('-date')
+
+    def get_context_data(self, **kwards):
+        ctx = super(UserAllNewsView, self).get_context_data(**kwards)
+
+        ctx['title'] = f"Articles from {self.kwargs.get('username')}"
         return ctx
 
 
@@ -34,6 +54,7 @@ class NewsDetailView(DetailView):
 
         ctx['title'] = News.objects.get(pk=self.kwargs['pk'])
         return ctx
+
 
 class CreateNewsVeiw(LoginRequiredMixin, CreateView):
     model = News
@@ -87,11 +108,6 @@ class DeleteNewsView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == news.author:
             return True
         return False
-
-
-
-
-
 
 
 def contacts(request):
