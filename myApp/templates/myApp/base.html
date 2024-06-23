@@ -35,8 +35,11 @@
                 <button class="btn btn-outline-info">Login</button>
             </a>
             {% else %}
+            <a href="{% url 'news-add' %}">
+                <button class="btn btn-outline-secondary ms-3">Add an article</button>
+            </a>
             <a href="{% url 'profile' %}">
-                <button class="btn btn-outline-info">Profile</button>
+                <button class="btn btn-outline-info ms-3">Profile</button>
             </a>
 
             <form method="post" action="{% url 'exit' %}">

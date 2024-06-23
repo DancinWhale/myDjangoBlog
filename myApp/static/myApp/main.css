@@ -29,7 +29,8 @@ body {
     font-weight: bold;
 }
 
-.form-register.auth input{
+.form-register.auth input,
+.form-register.auth textarea{
     display: block;
     width: 96%;
     margin-top: 5px;

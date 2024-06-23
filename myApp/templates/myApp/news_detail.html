@@ -4,25 +4,24 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ title }}</h1>
-    {% for post in news %}
         <div class="alert alert-light">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.text }}</p>
+            <h3>{{ object.title }}</h3>
+            <p>{{ object.text }}</p>
             <div class="row">
                 <div>
-                    <img src="{{ post.author.profile.img.url }}" alt="{{ post.author }}" class="user_images">
+                    <img src="{{ object.author.profile.img.url }}" alt="{{ object.author }}" class="user_images">
                 </div>
                 <div class="mt-2">
-                    <span class="text-muted">Published: {{ post.date|date:"j.m.Y, H:i" }}</span>
-                    <p><b>Author:</b> {{ post.author }}</p>
+                    <span class="text-muted">Published: {{ object.date|date:"j.m.Y, H:i" }}</span>
+                    <p><b>Author:</b> {{ object.author }}</p>
                 </div>
             </div>
-            <a href="{% url 'news-detail' post.id %}" class="btn btn-outline-warning">
-                Read more
-            </a>
+            {% if object.author == user %}
+            <hr>
+            <a href="{% url 'news-update' object.id%}" class="btn btn-info">Update</a>
+            <a href="{% url 'news-delete' object.id%}" class="btn btn-danger">Delete</a>
+            {% endif %}
         </div>
-    {% endfor %}
 {% endblock %}
 
 
